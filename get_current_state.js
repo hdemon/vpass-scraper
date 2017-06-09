@@ -1,6 +1,7 @@
 const Nightmare = require('nightmare')
 const exec = require('child_process').exec
-const nightmare = Nightmare({ show: true })
+const nightmare = Nightmare({ show: false })
+const cheerio = require('cheerio')
 
 nightmare
   .goto('https://www.smbc-card.com/mem/index.jsp')
@@ -22,6 +23,9 @@ nightmare
   })
   .end()
   .then(function(html) {
-    console.log(html);
+    const $ = cheerio.load(html)
+    const balance = Number($('#vp_alcor_view_Label_179').html()) * 10000
+    console.log(balance) 
+    const data = { date: new Date(), balance }
   })
   .catch((error) => error && console.error(error))
