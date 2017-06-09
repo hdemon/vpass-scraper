@@ -1,6 +1,6 @@
 const Nightmare = require('nightmare')
 const exec = require('child_process').exec
-const nightmare = Nightmare({ show: true })
+const nightmare = Nightmare({ show: false })
 
 nightmare
   .goto('https://www.smbc-card.com/mem/index.jsp')
